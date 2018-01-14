@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Mathematical Birthday calculator</title>
+  <link rel="stylesheet" href="css/pure-min.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/MathematicalBirthdays.css">
+  <link rel="stylesheet" href="css/jquery-ui.min.css">
+  <link rel="stylesheet" href="css/tabulator_simple.min.css">
+  <script src="javascript/lib/jquery-3.2.1.min.js"></script>
+  <script src="javascript/lib/jquery-ui.min.js"></script>
+  <script src="javascript/lib/tabulator.min.js"></script>
+  <script src="javascript/lib/moment.js"></script>
+  <script src="javascript/ErathostenesSieve.js"></script>
+  <script src="javascript/MathematicalBirthdayCalculator.js"></script>
+  <script>
+    //var MathematicalBirthdayCalculator = require('javascript/MathematicalBirthdayCalculator.js');
+    
+    $( function() {
+
+        
+      //init date picker
+      $( "#datepicker" ).datepicker({
+                                    dateFormat: "dd-mm-yy", 
+                                    onSelect:function() {
+                                        $(this).datepicker( "hide" ); //hide the calendar if enter is pressed
+                                        $(this).blur(); //remove focus from the input (so need to click again to select a new date)
+                                        updateTable($(this).val());
+
+                                    }});
+    // init the tabulator
+      $("#mathbirthday-table").tabulator({columns:[
+          {title:"Date", 
+           field:"Date", 
+           formatter:function(cell, formatterParams){
+                        var tmpMoment = new moment(cell.getValue());
+                        return tmpMoment.format("dddd, Do MMMM YYYY");
+                        }
+            },
+          {title:"Number", field:"Number"},
+          {title:"Label", field:"Label"}
+          ]});
+
+        function getBirthdays(myDate){
+            var MBC = new MathematicalBirthdayCalculator(myDate);
+            return MBC.generateAllBirthdaysDates();
+
+        }
+        function updateTable(myDate){
+            myMoment = new moment(myDate , "DD-MM-YYYY");
+            console.log("updateTable: "+ myMoment);           
+             $("#mathbirthday-table").tabulator("setData", getBirthdays(myMoment.toDate()));
+        }
+
+    } );
+  
+   
+    </script>
+</head>
+<body>
+        <div class="pure-menu pure-menu-horizontal">
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">Home</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Faq</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">About</a></li>
+                </ul>
+            </div>
+    <div class="banner">
+        <div class="banner-head">
+            <h1>The mathematical birthday calculator</h1>
+            <h2>
+                Be a good geek and celebrate better birthdays.
+            </h2>
+        </div>
+    </div>        
+<div class="main-body" >
+    <div id="input" class="pure-form"> 
+    <label for="datepicker">
+    Date <input type="text" id="datepicker"/>
+    </label>
+    <button align="left" type="submit" class="pure-button pure-button-primary">Download as CSV</button>
+    </div>
+
+    <div id="mathbirthday-table"></div>
+</div>
+
+
+ 
+
+
+
+ 
+</body>
+</html>

@@ -1,4 +1,4 @@
-var MathematicalBirthdayCalculator = require('../MathematicalBirthdayCalculator.js');
+var MathematicalBirthdayCalculator = require('../javascript/MathematicalBirthdayCalculator.js');
 
 var MBC = new MathematicalBirthdayCalculator(1980,2,22,21,00,00);
 console.log("Date: " + MBC.getDate());

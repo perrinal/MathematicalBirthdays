@@ -1,0 +1,34 @@
+.banner {
+    /*background: transparent url('../resources/dawid-malecki-42536.jpg') 0 0 no-repeat fixed;
+
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='../resources/dawid-malecki-42536.jp', sizingMethod='scale');
+    background-size: cover;*/
+    text-align: center;
+    background-color: rgb(93, 182, 197) ;
+    border-bottom: 1px solid rgba(50, 15, 131, 0.2);
+    border-top: 1px solid rgba(50, 15, 131, 0.2);
+    height: 200px;
+    width: 100%;
+    margin-bottom: 3em;
+    display: table;
+}
+
+    .banner-head {
+        display: table-cell;
+        vertical-align: middle;
+        margin-bottom: 0;
+        font-size: 2em;
+        color: rgb(233, 233, 233);
+        font-weight: 500;
+        text-shadow: 0 1px 1px rgb(133, 133, 133);
+    }
+    .main-body{
+        margin-right: auto; 
+        margin-left: auto; 
+        width: 800px;
+
+    }
+    h2 {
+        font-size: 1em;
+    }
+
